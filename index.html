@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaMoon Tech | Premium Technology Solutions</title>
+    <link rel="icon" href="logo.svg">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --darker: #1e2223;
+            --light: #f5f6fa;
+            --lighter: #ffffff;
+            --accent: #fd79a8;
+            --accent-dark: #e66797;
+            --gray: #636e72;
+            --light-gray: #dfe6e9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        
+        header.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(44, 44, 48, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+            margin-left: 4px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            letter-spacing: 0.2px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hamburger i {
+            font-size: 1.8rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('pc.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, var(--light));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 4rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(253, 121, 168, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(253, 121, 168, 0.4);
+            background-color: var(--accent-dark);
+        }
+        
+        .cta-button i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover i {
+            transform: translateX(4px);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            z-index: 2;
+            cursor: pointer;
+        }
+        
+        /* Products Section */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background-color: var(--accent);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        /* Custom PCs Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+        }
+        
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: inherit;
+            transition: transform 0.8s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 2rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--darker);
+        }
+        
+        .product-info p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .product-features {
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .product-features i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Swiper Section */
+        .swiper-container {
+            width: 100%;
+            height: 600px;
+            margin: 4rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .swiper-slide {
+            position: relative;
+            background: #000;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+        
+        .swiper-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            z-index: 2;
+        }
+        
+        .swiper-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .swiper-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: white !important;
+            width: 60px !important;
+            height: 60px !important;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 1.5rem !important;
+        }
+        
+        .swiper-pagination-bullet {
+            background: white !important;
+            opacity: 0.7 !important;
+            width: 12px !important;
+            height: 12px !important;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--accent) !important;
+            opacity: 1 !important;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--darker);
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial {
+            padding: 2rem 3rem;
+        }
+        
+        .testimonial-content {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(255,255,255,0.2);
+            position: absolute;
+        }
+        
+        .testimonial-content::before {
+            top: -20px;
+            left: -30px;
+        }
+        
+        .testimonial-content::after {
+            bottom: -40px;
+            right: -30px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-title {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+        }
+        
+        .contact-info {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        .contact-info.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .contact-details {
+            margin-bottom: 3rem;
+        }
+        
+        .contact-details p {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            color: var(--darker);
+        }
+        
+        .contact-details i {
+            margin-right: 1rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .business-hours h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .business-hours p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            max-width: 250px;
+        }
+        
+        .business-hours span {
+            color: var(--gray);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        
+        .contact-form.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--darker);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 5rem 2rem 3rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.8rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .footer-links i {
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-top: 3px;
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: var(--accent-dark);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .swiper-container {
+                height: 500px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .swiper-content h3 {
+                font-size: 2rem;
+            }
+            
+            .swiper-content p {
+                font-size: 1.1rem;
+            }
+            
+            .testimonial-content {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--darker);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 2rem;
+                transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 1.2rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero {
+                min-height: 700px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .swiper-container {
+                height: 450px;
+                margin: 3rem 0;
+            }
+            
+            .swiper-content {
+                padding: 2rem;
+            }
+            
+            .contact {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .swiper-container {
+                height: 400px;
+            }
+            
+            .swiper-content h3 {
+                font-size: 1.6rem;
+            }
+            
+            .testimonial {
+                padding: 2rem 1.5rem;
+            }
+            
+            .testimonial-content {
+                font-size: 1.1rem;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">LaMoon<span>Tech</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#custom-pcs">Custom PCs</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+                <li><a href="#smart-home">Smart Home</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Exclusive Technology For Discerning Clients</h1>
+            <p>At LaMoon Tech, we craft bespoke high-performance computing solutions, premium accessories, and intelligent home systems that redefine excellence. Experience technology tailored to your exacting standards.</p>
+            <a href="#contact" class="cta-button">Request Consultation <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="scroll-down" onclick="document.querySelector('#custom-pcs').scrollIntoView({ behavior: 'smooth' })">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Custom PCs Section -->
+    <section class="section" id="custom-pcs">
+        <div class="section-title">
+            <h2>Custom High-End PCs</h2>
+        </div>
+        <p class="section-subtitle">Each system is meticulously crafted with premium components and obsessive attention to detail for uncompromising performance.</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-badge">Most Popular</div>
+                <div class="product-image">
+                    <img src="apex.jpg" alt="Gaming PC">
+                </div>
+                <div class="product-info">
+                    <h3>Apex Gaming System</h3>
+                    <p>Engineered for esports professionals and enthusiasts who demand the ultimate competitive edge with flawless high-refresh performance.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Latest RTX 4090 Graphics</li>
+                        <li><i class="fas fa-check"></i> Intel Core i9-13900K</li>
+                        <li><i class="fas fa-check"></i> 64GB DDR5 RAM</li>
+                        <li><i class="fas fa-check"></i> Custom liquid cooling</li>
+                    </ul>
+                    <button class="cta-button">Configure Yours <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-badge">New Release</div>
+                <div class="product-image">
+                    <img src="8k.jpg" alt="Workstation PC">
+                </div>
+                <div class="product-info">
+                    <h3>Creator Workstation</h3>
+                    <p>For professionals who push boundaries in 3D rendering, 8K video editing, and complex computational workloads.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Dual RTX A6000 GPUs</li>
+                        <li><i class="fas fa-check"></i> AMD Threadripper PRO</li>
+                        <li><i class="fas fa-check"></i> 128GB ECC RAM</li>
+                        <li><i class="fas fa-check"></i> 8TB NVMe Storage</li>
+                    </ul>
+                    <button class="cta-button">Configure Yours <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="intelcore.jpg" alt="Compact PC">
+                </div>
+                <div class="product-info">
+                    <h3>Nova Compact</h3>
+                    <p>Premium performance in a minimalist footprint - perfect for sophisticated spaces without compromise.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> RTX 4080 Mini</li>
+                        <li><i class="fas fa-check"></i> Intel Core i7-13700</li>
+                        <li><i class="fas fa-check"></i> 32GB DDR5 RAM</li>
+                        <li><i class="fas fa-check"></i> Silent operation</li>
+                    </ul>
+                    <button class="cta-button">Configure Yours <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Accessories Section -->
+    <section class="section" id="accessories">
+        <div class="section-title">
+            <h2>Premium Computer Accessories</h2>
+        </div>
+        <p class="section-subtitle">Complement your system with our curated selection of elite peripherals and components designed for perfectionists.</p>
+        
+        <!-- Swiper Slider -->
+        <div class="swiper-container swiper-main">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="keyboard.jpg" alt="Mechanical Keyboard">
+                    <div class="swiper-content">
+                        <h3>Artisan Mechanical Keyboards</h3>
+                        <p>Handcrafted keyboards with premium materials, customizable switches, and unparalleled typing experiences for professionals and enthusiasts.</p>
+                        <button class="cta-button">Explore Collection <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="mouse.jpg" alt="Gaming Mouse">
+                    <div class="swiper-content">
+                        <h3>Precision Gaming Mice</h3>
+                        <p>Engineered for esports with 26,000 DPI optical sensors, adjustable weights, and tournament-grade responsiveness.</p>
+                        <button class="cta-button">Explore Collection <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="4k.jpg" alt="4K Monitor">
+                    <div class="swiper-content">
+                        <h3>Reference Monitors</h3>
+                        <p>Studio-grade 4K OLED and mini-LED displays with 99% Adobe RGB coverage and HDR for color-critical work.</p>
+                        <button class="cta-button">Explore Collection <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Audio Setup">
+                </div>
+                <div class="product-info">
+                    <h3>Audiophile-Grade Sound</h3>
+                    <p>Reference headphones, DAC/AMP combos, and studio monitors for the most discerning listeners.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> High-resolution audio</li>
+                        <li><i class="fas fa-check"></i> Balanced connections</li>
+                        <li><i class="fas fa-check"></i> Premium materials</li>
+                    </ul>
+                    <button class="cta-button">Explore Audio <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="live.jpg" alt="Streaming Setup">
+                </div>
+                <div class="product-info">
+                    <h3>Broadcast Equipment</h3>
+                    <p>Professional streaming gear for content creators who demand broadcast-quality production.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 4K60 capture cards</li>
+                        <li><i class="fas fa-check"></i> XLR microphones</li>
+                        <li><i class="fas fa-check"></i> Studio lighting</li>
+                    </ul>
+                    <button class="cta-button">Explore Streaming <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="health.jpg" alt="Ergonomic Setup">
+                </div>
+                <div class="product-info">
+                    <h3>Ergonomic Workspaces</h3>
+                    <p>Health-focused furniture and accessories designed for marathon computing sessions.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Adjustable standing desks</li>
+                        <li><i class="fas fa-check"></i> Orthopedic seating</li>
+                        <li><i class="fas fa-check"></i> Monitor arms</li>
+                    </ul>
+                    <button class="cta-button">Explore Workspaces <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Home Section -->
+    <section class="section" id="smart-home">
+        <div class="section-title">
+            <h2>Smart Home Solutions</h2>
+        </div>
+        <p class="section-subtitle">Transform your living space with our premium smart home systems that combine cutting-edge technology with elegant design.</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="light.jpeg" alt="Smart Lighting">
+                </div>
+                <div class="product-info">
+                    <h3>Architectural Lighting</h3>
+                    <p>Professional-grade smart lighting systems that adapt to your circadian rhythm and enhance architectural features.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Full spectrum color tuning</li>
+                        <li><i class="fas fa-check"></i> Scene automation</li>
+                        <li><i class="fas fa-check"></i> Energy monitoring</li>
+                    </ul>
+                    <button class="cta-button">Explore Lighting <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="climat.jpg" alt="Climate Control">
+                </div>
+                <div class="product-info">
+                    <h3>Climate Harmony</h3>
+                    <p>Whole-home climate systems that learn your preferences and optimize for comfort and efficiency.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Zoned temperature control</li>
+                        <li><i class="fas fa-check"></i> Air quality monitoring</li>
+                        <li><i class="fas fa-check"></i> Predictive adjustments</li>
+                    </ul>
+                    <button class="cta-button">Explore Climate <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="cinema.jpeg" alt="Home Theater">
+                </div>
+                <div class="product-info">
+                    <h3>Private Cinema</h3>
+                    <p>Bespoke home theater installations with reference-grade audio and projection systems.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 4K laser projection</li>
+                        <li><i class="fas fa-check"></i> Dolby Atmos sound</li>
+                        <li><i class="fas fa-check"></i> Acoustic treatments</li>
+                    </ul>
+                    <button class="cta-button">Explore Theaters <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Systems Section -->
+    <section class="section" id="security">
+        <div class="section-title">
+            <h2>Security & Alarm Systems</h2>
+        </div>
+        <p class="section-subtitle">Discreet, intelligent security solutions that protect what matters most without compromising on aesthetics.</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="cameras.jpg" alt="Surveillance System">
+                </div>
+                <div class="product-info">
+                    <h3>Sentinel Surveillance</h3>
+                    <p>4K security cameras with AI-powered analytics, facial recognition, and low-light performance.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 24/7 monitoring</li>
+                        <li><i class="fas fa-check"></i> Weatherproof housing</li>
+                        <li><i class="fas fa-check"></i> Encrypted storage</li>
+                    </ul>
+                    <button class="cta-button">Explore Surveillance <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fingerprint.jpg" alt="Smart Locks">
+                </div>
+                <div class="product-info">
+                    <h3>Access Control</h3>
+                    <p>High-security smart locks and entry systems with biometric authentication and remote management.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Fingerprint recognition</li>
+                        <li><i class="fas fa-check"></i> Tamper alerts</li>
+                        <li><i class="fas fa-check"></i> Temporary access</li>
+                    </ul>
+                    <button class="cta-button">Explore Access <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="security.jpg" alt="Alarm System">
+                </div>
+                <div class="product-info">
+                    <h3>Perimeter Protection</h3>
+                    <p>Comprehensive alarm systems with glass break sensors, motion detection, and emergency response integration.</p>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> Instant alerts</li>
+                        <li><i class="fas fa-check"></i> Police/fire dispatch</li>
+                        <li><i class="fas fa-check"></i> Environmental monitoring</li>
+                    </ul>
+                    <button class="cta-button">Explore Alarms <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <p class="section-subtitle">Beyond products, we offer comprehensive services to ensure your technology performs flawlessly for years to come.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <h3>Custom PC Building</h3>
+                <p>From component selection to meticulous assembly and stress testing, we craft computers that exceed expectations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <h3>Smart Home Installation</h3>
+                <p>Professional deployment and integration of all smart home components with personalized automation programming.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Security System Setup</h3>
+                <p>Discreet installation of surveillance and alarm systems with ongoing monitoring options.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-headset"></i></div>
+                <h3>Concierge Support</h3>
+                <p>Priority technical assistance and troubleshooting for all your technology needs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Gaming Setup Optimization</h3>
+                <p>Fine-tuning of hardware and software for maximum frame rates and responsiveness.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Network Design</h3>
+                <p>Enterprise-grade networking solutions for seamless connectivity throughout your property.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2 style="color: white;">Client Experiences</h2>
+        </div>
+        <div class="testimonial-slider">
+            <div class="swiper-container testimonial-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial">
+                            <p class="testimonial-content">LaMoon Tech built me a workstation that handles 8K video editing like it's nothing. Their attention to detail in component selection and cable management is unlike anything I've seen from other builders.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael R.">
+                                </div>
+                                <div class="author-name">Michael R.</div>
+                                <div class="author-title">Film Director</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial">
+                            <p class="testimonial-content">The smart home system they installed has completely transformed our living experience. Everything works together seamlessly, and their programming makes the technology feel intuitive rather than complicated.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah L.">
+                                </div>
+                                <div class="author-name">Sarah L.</div>
+                                <div class="author-title">Homeowner</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial">
+                            <p class="testimonial-content">As a competitive gamer, I demand perfection from my equipment. LaMoon Tech delivered a system that not only meets but exceeds tournament standards, with cooling that keeps performance consistent during marathon sessions.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David K.">
+                                </div>
+                                <div class="author-name">David K.</div>
+                                <div class="author-title">Professional Gamer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <p class="section-subtitle">Ready to discuss your technology needs? Reach out to our team for a personalized consultation.</p>
+        <div class="contact">
+            <div class="contact-info">
+                <h3>Our Information</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-map-marker-alt"></i> 104 S Glendale Ave, unit 201, Glendale CA 91205</p>
+                    <p><i class="fas fa-phone-alt"></i> (747) 295-9894</p>
+                    <p><i class="fas fa-envelope"></i> lamoontech@gmail.com</p>
+                </div>
+                <div class="business-hours">
+                    <h4>Business Hours</h4>
+                    <p>Monday - Friday <span>9:00 AM - 6:00 PM</span></p>
+                    <p>Saturday <span>10:00 AM - 4:00 PM</span></p>
+                    <p>Sunday <span>Closed</span></p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service">
+                            <option value="">Select a service</option>
+                            <option value="custom-pc">Custom PC Build</option>
+                            <option value="accessories">Premium Accessories</option>
+                            <option value="smart-home">Smart Home Installation</option>
+                            <option value="security">Security Systems</option>
+                            <option value="other">Other Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col footer-about">
+                <h4>LaMoon Tech</h4>
+                <p>Specializing in premium technology solutions for discerning clients who demand exceptional performance, quality, and service.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col footer-links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#custom-pcs"><i class="fas fa-chevron-right"></i> Custom PCs</a></li>
+                    <li><a href="#accessories"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+                    <li><a href="#smart-home"><i class="fas fa-chevron-right"></i> Smart Home</a></li>
+                    <li><a href="#security"><i class="fas fa-chevron-right"></i> Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-links">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> PC Building</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Smart Home Setup</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Security Installation</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> IT Support</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Network Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 104 S Glendale Ave, unit 201<br>Glendale CA 91205</p>
+                <p><i class="fas fa-phone-alt"></i> (747) 295-9894</p>
+                <p><i class="fas fa-envelope"></i> lamoontech@gmail.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 LaMoon Tech. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.querySelector('i').classList.add('fa-bars');
+                hamburger.querySelector('i').classList.remove('fa-times');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Back to top button
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // Initialize Swipers
+        const mainSwiper = new Swiper('.swiper-main', {
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        
+        const testimonialSwiper = new Swiper('.testimonial-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+        
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.product-card, .service-card, .contact-info, .contact-form');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate');
+                }
+            });
+        };
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will contact you shortly.');
+                this.reset();
+            });
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            
+            // Animate hero elements
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.animation = 'fadeInUp 1s ease forwards';
+            }
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    return;
+                }
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
