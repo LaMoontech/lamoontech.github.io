@@ -135,7 +135,7 @@
         .hero {
             height: 100vh;
             min-height: 800px;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('pc.jpg');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('pc.jpg') no-repeat center center/cover;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -148,6 +148,12 @@
             position: relative;
             overflow: hidden;
         }
+        /* Fix for iOS devices */
+            @supports (-webkit-touch-callout: none) {
+                .hero {
+                    background-attachment: scroll !important;
+                }
+            }
         
         .hero::before {
             content: '';
