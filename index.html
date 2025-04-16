@@ -1472,40 +1472,64 @@
             </div>
             <div class="contact-form">
                 <h3>Send a Message</h3>
-                <form id="contactForm">
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" required>
+                        <input name="name" type="text" id="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" required>
+                        <input name="email" type="email" id="email" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone">
+                        <input name="tel" type="tel" id="phone">
                     </div>
                     <div class="form-group">
                         <label for="service">Service Interest</label>
-                        <select id="service">
+                        <select name="evt" id="service">
                             <option value="">Select a service</option>
-                            <option value="custom-pc">Custom PC Build</option>
-                            <option value="accessories">Premium Accessories</option>
-                            <option value="smart-home">Smart Home Installation</option>
-                            <option value="security">Security Systems</option>
-                            <option value="other">Other Inquiry</option>
+                            <option name="Custom PC Build" value="custom-pc">Custom PC Build</option>
+                            <option name="Premium Accessories" value="accessories">Premium Accessories</option>
+                            <option name="Smart Home Installation" value="smart-home">Smart Home Installation</option>
+                            <option name="Security Systems" value="security">Security Systems</option>
+                            <option name="Other Inquiry" value="other">Other Inquiry</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="message">Your Message</label>
-                        <textarea id="message" required></textarea>
+                        <textarea name="meassage" id="message" required></textarea>
                     </div>
-                    <button type="submit" class="cta-button submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                    <button value="send" type="submit" class="cta-button submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
     </section>
 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "E6YuUibY6F7Gk2vfo",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('service_fd8pmem', 'template_qd46bba', this)
+                    .then(() => {
+                        alert('Thank you for your message! We will contact you soon.');
+                        document.getElementById('contact-form').reset();
+                    }, (error) => {
+                        alert('ERROR!');
+                    });
+            });
+        }
+    </script>
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1642,14 +1666,14 @@
         };
         
         // Form submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will contact you shortly.');
-                this.reset();
-            });
-        }
+        // const contactForm = document.getElementById('contactForm');
+        // if (contactForm) {
+        //     contactForm.addEventListener('submit', function(e) {
+        //         e.preventDefault();
+        //         alert('Thank you for your message! We will contact you shortly.');
+        //         this.reset();
+        //     });
+        // }
         
         // Initialize animations on load
         window.addEventListener('load', () => {
